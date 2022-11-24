@@ -8,7 +8,6 @@ import com.google.common.collect.Maps;
 import io.swagger.codegen.CliOption;
 import io.swagger.codegen.CodegenConfigLoader;
 import io.swagger.codegen.CodegenConstants;
-import io.swagger.codegen.languages.JavaClientCodegen;
 import io.swagger.codegen.options.*;
 import io.swagger.generator.exception.ApiException;
 import io.swagger.generator.model.GeneratorInput;

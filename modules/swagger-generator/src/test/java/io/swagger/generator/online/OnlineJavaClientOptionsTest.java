@@ -5,7 +5,6 @@ import static org.testng.Assert.assertNotNull;
 
 import io.swagger.codegen.CliOption;
 import io.swagger.codegen.CodegenConstants;
-import io.swagger.codegen.languages.JavaClientCodegen;
 import io.swagger.codegen.options.JavaOptionsProvider;
 import io.swagger.generator.exception.ApiException;
 
