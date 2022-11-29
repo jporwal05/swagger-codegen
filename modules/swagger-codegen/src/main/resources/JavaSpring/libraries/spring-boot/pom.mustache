@@ -18,8 +18,8 @@
     </parent>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-        {{^interfaceOnly}}
         <plugins>
+            {{^interfaceOnly}}
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -31,8 +31,26 @@
                     </execution>
                 </executions>
             </plugin>
+            {{/interfaceOnly}}
+            <plugin>
+               <artifactId>maven-deploy-plugin</artifactId>
+               <version>2.8.1</version>
+               <executions>
+                  <execution>
+                     <id>default-deploy</id>
+                     <phase>deploy</phase>
+                     <goals>
+                        <goal>deploy</goal>
+                     </goals>
+                  </execution>
+               </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+            </plugin>
         </plugins>
-        {{/interfaceOnly}}
     </build>
     {{#java11}}
     <profiles>
@@ -135,4 +153,11 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
 </project>
