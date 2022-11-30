@@ -14,8 +14,20 @@ rm -rf swagger/examples/PetStoreService
 
 java -jar custom-codegen-cli-2.jar generate \
 -i https://petstore.swagger.io/v2/swagger.json \
--l spring -DinterfaceOnly=true -DdateLibrary=java8 \
+-l spring -DinterfaceOnly=true,java11=true \
+-o swagger/examples/petstore-server \
+--group-id com.jtech \
+--invoker-package com.jtech.petstore \
+--api-package com.jtech.petstore.api \
+--model-package com.jtech.petstore.model \
+--artifact-id petstore-server \
+--artifact-version 1.0.0-SNAPSHOT
+
+java -jar custom-codegen-cli-2.jar generate \
+-i https://petstore.swagger.io/v2/swagger.json \
+-l spring -Djava11=true \
 -o swagger/examples/PetStoreService \
+--server-library petstore-server \
 --group-id com.jtech \
 --invoker-package com.jtech.petstore \
 --api-package com.jtech.petstore.api \
@@ -23,12 +35,14 @@ java -jar custom-codegen-cli-2.jar generate \
 --artifact-id PetStoreService \
 --artifact-version 1.0
 
-cd swagger/examples/PetStoreService
+cd swagger/examples/petstore-server
 
 mvn clean package
 
 mvn --settings ../../../settings.xml clean deploy -Dmaven.javadoc.skip=true
 
-cd ../../../
+cd ../PetStoreService
+
+mvn clean package
 
 #rm -rf swagger/examples/PetStoreService

@@ -182,6 +182,9 @@ public class Generate implements Runnable {
     @Option(name = {"--ignore-import-mapping"}, title = "ignore import mapping", description = "allow generate model classes using names previously listed on import mappings.")
     private String ignoreImportMappings;
 
+    @Option(name = {"--server-library"}, title = "server library to use", description = "server library to use in this project")
+    private String serverLibrary;
+
     @Override
     public void run() {
 
@@ -281,6 +284,10 @@ public class Generate implements Runnable {
 
         if (isNotEmpty(ignoreFileOverride)) {
             configurator.setIgnoreFileOverride(ignoreFileOverride);
+        }
+
+        if (isNotEmpty(serverLibrary)) {
+            configurator.setServerLibrary(serverLibrary);
         }
 
         if (removeOperationIdPrefix != null) {

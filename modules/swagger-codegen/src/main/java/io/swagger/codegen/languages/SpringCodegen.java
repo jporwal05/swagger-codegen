@@ -157,6 +157,10 @@ public class SpringCodegen extends AbstractJavaCodegen
             LOGGER.info("Set base package to invoker package (" + basePackage + ")");
         }
 
+        if (!this.interfaceOnly) {
+            apiTemplateFiles.remove("api.mustache");
+        }
+
         super.processOpts();
 
         // clear model and api doc template as this codegen
@@ -257,7 +261,7 @@ public class SpringCodegen extends AbstractJavaCodegen
                 supportingFiles.add(new SupportingFile("homeController.mustache",
                         (sourceFolder + File.separator + configPackage).replace(".", java.io.File.separator), "HomeController.java"));
                 supportingFiles.add(new SupportingFile("swagger2SpringBoot.mustache",
-                        (sourceFolder + File.separator + basePackage).replace(".", java.io.File.separator), "Swagger2SpringBoot.java"));
+                        (sourceFolder + File.separator + basePackage).replace(".", java.io.File.separator), "Main.java"));
                 supportingFiles.add(new SupportingFile("RFC3339DateFormat.mustache",
                         (sourceFolder + File.separator + basePackage).replace(".", java.io.File.separator), "RFC3339DateFormat.java"));
                 supportingFiles.add(new SupportingFile("application.mustache",

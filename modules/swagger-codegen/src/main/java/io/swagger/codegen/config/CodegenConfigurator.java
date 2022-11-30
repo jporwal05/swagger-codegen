@@ -74,6 +74,7 @@ public class CodegenConfigurator implements Serializable {
     private String httpUserAgent;
 
     private final Map<String, Object> dynamicProperties = new HashMap<String, Object>(); //the map that holds the JsonAnySetter/JsonAnyGetter values
+    private String serverLibrary;
 
     public CodegenConfigurator() {
         this.setOutputDir(".");
@@ -431,6 +432,7 @@ public class CodegenConfigurator implements Serializable {
         checkAndSetAdditionalProperty(gitRepoId, CodegenConstants.GIT_REPO_ID);
         checkAndSetAdditionalProperty(releaseNote, CodegenConstants.RELEASE_NOTE);
         checkAndSetAdditionalProperty(httpUserAgent, CodegenConstants.HTTP_USER_AGENT);
+        checkAndSetAdditionalProperty(serverLibrary, CodegenConstants.SERVER_LIBRARY);
 
         handleDynamicProperties(config);
 
@@ -530,6 +532,11 @@ public class CodegenConfigurator implements Serializable {
             }
         }
         return null;
+    }
+
+    public CodegenConfigurator setServerLibrary(String serverLibrary) {
+        this.serverLibrary = serverLibrary;
+        return this;
     }
 }
 
